@@ -132,6 +132,7 @@ class AC_Connector {
 	 * @throws \RequestException
 	 */
 	public function curl($url, $params_data = array(), $verb = "", $custom_method = "") {
+        $request = curl_init();
 		if ($this->version == 1) {
 			// find the method from the URL.
 			$method = preg_match("/api_action=[^&]*/i", $url, $matches);
@@ -144,11 +145,11 @@ class AC_Connector {
 		} elseif ($this->version == 2) {
 			$method = $custom_method;
 			$url .= "?api_key=" . $this->api_key;
-		}
+		} else {
+            curl_setopt($request, CURLOPT_HTTPHEADER, array('API-TOKEN: ' . $this->api_key));
+        }
 
 		$debug_str1 = "";
-
-		$request = curl_init();
 
 		$debug_str1 .= "\$ch = curl_init();\n";
 
