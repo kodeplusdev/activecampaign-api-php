@@ -21,11 +21,5 @@
 			"includes/"
 		]
 	},
-	"repositories": [
-		{
-			"type": "vcs",
-			"url": "https://github.com/kodeplusdev/activecampaign-api-php"
-		}
-	],
 	"minimum-stability": "stable"
 }
